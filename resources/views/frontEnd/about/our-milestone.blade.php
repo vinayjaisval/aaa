@@ -1,19 +1,6 @@
+@extends('frontEnd.layouts.master')
 
-	<body id="bg">
-	     <?php include 'header.php'; ?>
-		<!-- Boxed Layout -->
-		<div id="page" class="site boxed-layout"> 
-		
-		<!-- Preloader -->
-		<div class="preeloader">
-			<div class="preloader-spinner"></div>
-		</div>
-		<!--/ End Preloader -->
-	
-
-
-<!-- Title Tag  -->
-<title>Our Milestone</title>
+@section('content')
 
 
 <!-- Breadcrumb -->
@@ -117,8 +104,5 @@
         </li>
     </ul>
 </section>
-<!-- milestone section ends here  -->
-<!-- footer start -->
-    <?php include 'footer.php'; ?>
-	<!-- footer-end -->
 
+@endsection

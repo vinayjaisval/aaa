@@ -1,18 +1,12 @@
 
-	<body id="bg">
-	     <?php include 'header.php'; ?>
-		<!-- Boxed Layout -->
-		<div id="page" class="site boxed-layout"> 
-		
-		<!-- Preloader -->
-		<div class="preeloader">
-			<div class="preloader-spinner"></div>
-		</div>
-		<!--/ End Preloader -->
-	
+@extends('frontEnd.layouts.master')
 
-<!-- Title Tag  -->
-<title>Overview</title>
+@section('content')
+@php
+    $language_code = \Helper::currentLanguage()->code;
+    $heading  = App\Models\Topic::where(['webmaster_id'=> 33,'status'=>1,'row_no'=>1])->get();
+    $cartds  = App\Models\Topic::where(['webmaster_id'=> 33,'status'=>1])->whereIn('row_no', [1])->get();
+@endphp
 
 <!-- Breadcrumb -->
 <div class="breadcrumbs overlay" style="background-image:url('img/overview-1.jpg'); background-size: cover;">
@@ -231,9 +225,4 @@
         </div>
     </div>
 </div>
-<!--/ End Client Area -->
-<!-- footer start -->
-    <?php include 'footer.php'; ?>
-	<!-- footer-end -->
-
-
+@endsection

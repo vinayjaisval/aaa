@@ -1,19 +1,7 @@
 
-	<body id="bg">
-	     <?php include 'header.php'; ?>
-		<!-- Boxed Layout -->
-		<div id="page" class="site boxed-layout"> 
-		
-		<!-- Preloader -->
-		<div class="preeloader">
-			<div class="preloader-spinner"></div>
-		</div>
-		<!--/ End Preloader -->
-	
-		
+@extends('frontEnd.layouts.master')
 
-<!-- Title Tag  -->
-<title>Our Vision & Mission</title>
+@section('content')
 
 
 <!-- Breadcrumb -->
@@ -124,6 +112,4 @@
 </section>
 <!-- our vision and mission section ends here  -->
 
-<!-- footer start -->
-    <?php include 'footer.php'; ?>
-	<!-- footer-end -->
+@endsection

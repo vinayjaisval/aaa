@@ -48,8 +48,9 @@ class HomeController extends Controller
         session(['locale' => $lang]);
     }
 
-    public function seo($part1 = "", $part2 = "", $part3 = "", $part4 = "", $part5 = "", $part6 = "")
+    public function seoold($part1 = "", $part2 = "", $part3 = "", $part4 = "", $part5 = "", $part6 = "")
     {
+
         $languages_codes = Language::where("status", 1)->pluck("code")->toarray();
         if (in_array(strtolower($part1), $languages_codes)) {
             // part1 is lang
@@ -76,7 +77,7 @@ class HomeController extends Controller
                     $Popup = Popup::where("show_in", 0)->where("status", 1)->first();
                 }
             }
-          
+
             return view("frontEnd.home", ["page_type" => "home", "Popup" => $Popup]);
         }
 
@@ -171,13 +172,229 @@ class HomeController extends Controller
             }
             return $this->list_page($lang, $WebmasterSection);
         }
+
+
+        return $this->page_404();
+    }
+    public function seo($part1 = "", $part2 = "", $part3 = "", $part4 = "", $part5 = "", $part6 = "")
+    {
+
+        /* ---------------- LANGUAGE SETUP ---------------- */
+        $languages_codes = Language::where("status", 1)->pluck("code")->toArray();
+
+        if (in_array(strtolower($part1), $languages_codes)) {
+            $lang = strtolower($part1);
+            $this->set_language($lang);
+
+            $part1 = $part2;
+            $part2 = $part3;
+            $part3 = $part4;
+            $part4 = $part5;
+            $part5 = $part6;
+            $part6 = "";
+        } else {
+            $lang = config('smartend.default_language');
+            $this->set_language($lang);
+        }
+
+        /* ---------------- HOME PAGE ---------------- */
+        if ($part1 == "") {
+            $Popup = [];
+            if (Helper::GeneralWebmasterSettings("popups_status")) {
+                $Popup = Popup::where("show_in", 1)->where("status", 1)->first();
+                if (empty($Popup)) {
+                    $Popup = Popup::where("show_in", 0)->where("status", 1)->first();
+                }
+            }
+            return view("frontEnd.home", [
+                "page_type" => "home",
+                "Popup" => $Popup
+            ]);
+        }
+
+        /* ======================================================
+       🔥 CUSTOM BLADE FILE LOGIC (part1 / part2 based)
+       Folder: resources/views/frontEnd/custom/
+       ====================================================== */
+
+        // case 1: /about
+        if ($part1 && $part2 ) {
+
+       
+            $view = "frontEnd.about." . $part2;
+            
+            if (view()->exists($view)) {
+                return view($view, compact("lang", "part1"));
+            }
+        }
+
+        // case 2: /services/web-development
+        if ($part1 && $part2) {
+            $view = "frontEnd.custom." . $part1 . "." . $part2;
+            if (view()->exists($view)) {
+                return view($view, compact("lang", "part1", "part2"));
+            }
+        }
+
+        /* ---------------- CMS / SMARTEND LOGIC ---------------- */
+
+        $WebmasterSection = WebmasterSection::where('status', 1)
+            ->where("seo_url_slug_" . $lang, $part1)
+            ->first();
+
+        if (empty($WebmasterSection)) {
+            $WebmasterSection = WebmasterSection::where('status', 1)
+                ->where("title_" . $lang, $part1)
+                ->first();
+        }
+
+        // Direct landing pages like /about
+        if (empty($WebmasterSection)) {
+            $Topic = Topic::where('status', 1)
+                ->where("webmaster_id", 1)
+                ->where("seo_url_slug_" . $lang, $part1)
+                ->first();
+
+            if (!empty($Topic)) {
+                return $this->post_page($lang, $Topic);
+            }
+        }
+
+        if (!empty($WebmasterSection)) {
+
+            // Private section
+            if ($WebmasterSection->type == 4) {
+                return redirect()->route("NotFound");
+            }
+
+            // Public form
+            if ($WebmasterSection->type == 6) {
+                return $this->public_form($lang, $WebmasterSection);
+            }
+
+            if ($part2 != '') {
+                $Section1 = Section::where('status', 1)
+                    ->where("seo_url_slug_" . $lang, $part2)
+                    ->first();
+
+                if (!empty($Section1)) {
+
+                    if ($part3 != '') {
+                        $Section3 = Section::where('status', 1)
+                            ->where("seo_url_slug_" . $lang, $part3)
+                            ->first();
+
+                        if (empty($Section3)) {
+                            $Section3 = Section::where('status', 1)
+                                ->where("title_" . $lang, Helper::SlugToString($part3))
+                                ->first();
+                        }
+
+                        if (!empty($Section3)) {
+
+                            if ($part4 != "") {
+                                $Section4 = Section::where('status', 1)
+                                    ->where("seo_url_slug_" . $lang, $part4)
+                                    ->first();
+
+                                if (empty($Section4)) {
+                                    $Section4 = Section::where('status', 1)
+                                        ->where("title_" . $lang, Helper::SlugToString($part4))
+                                        ->first();
+                                }
+
+                                if (!empty($Section4)) {
+
+                                    if ($part5 != "") {
+                                        $Topic5 = Topic::where('status', 1)
+                                            ->where("seo_url_slug_" . $lang, $part5)
+                                            ->first();
+
+                                        if (empty($Topic5)) {
+                                            $Topic5 = Topic::where('status', 1)
+                                                ->where("title_" . $lang, Helper::SlugToString($part5))
+                                                ->first();
+                                        }
+
+                                        if (!empty($Topic5)) {
+                                            return $this->post_page($lang, $Topic5);
+                                        }
+                                    } else {
+                                        return $this->list_page($lang, $WebmasterSection, $Section4);
+                                    }
+                                } else {
+                                    $Topic4 = Topic::where('status', 1)
+                                        ->where("seo_url_slug_" . $lang, $part4)
+                                        ->first();
+
+                                    if (empty($Topic4)) {
+                                        $Topic4 = Topic::where('status', 1)
+                                            ->where("title_" . $lang, Helper::SlugToString($part4))
+                                            ->first();
+                                    }
+
+                                    if (!empty($Topic4)) {
+                                        return $this->post_page($lang, $Topic4);
+                                    }
+                                }
+                            } else {
+                                return $this->list_page($lang, $WebmasterSection, $Section3);
+                            }
+                        } else {
+                            $Topic3 = Topic::where('status', 1)
+                                ->where("seo_url_slug_" . $lang, $part3)
+                                ->first();
+
+                            if (empty($Topic3)) {
+                                $Topic3 = Topic::where('status', 1)
+                                    ->where("title_" . $lang, Helper::SlugToString($part3))
+                                    ->first();
+                            }
+
+                            if (!empty($Topic3)) {
+                                return $this->post_page($lang, $Topic3);
+                            }
+                        }
+                    } else {
+                        return $this->list_page($lang, $WebmasterSection, $Section1);
+                    }
+                } else {
+                    $Topic1 = Topic::where('status', 1)
+                        ->where("seo_url_slug_" . $lang, $part2)
+                        ->first();
+
+                    if (!empty($Topic1)) {
+                        return $this->post_page($lang, $Topic1);
+                    }
+
+                    $Section2 = Section::where('status', 1)
+                        ->where("title_" . $lang, Helper::SlugToString($part2))
+                        ->first();
+
+                    if (!empty($Section2)) {
+                        return $this->list_page($lang, $WebmasterSection, $Section2);
+                    }
+
+                    $Topic2 = Topic::where('status', 1)
+                        ->where("title_" . $lang, Helper::SlugToString($part2))
+                        ->first();
+
+                    if (!empty($Topic2)) {
+                        return $this->post_page($lang, $Topic2);
+                    }
+                }
+            }
+
+            return $this->list_page($lang, $WebmasterSection);
+        }
+
         return $this->page_404();
     }
 
     public function list_page($lang, $WebmasterSection = [], $Category = [])
     {
 
-  
+
         if (!empty($WebmasterSection)) {
 
             $page_type = "section";
@@ -211,8 +428,10 @@ class HomeController extends Controller
                 $FValue = \request()->input('q');
                 $FoundTopic = [];
                 if ($field_id > 0 && $FValue != "") {
-                    $FoundTopic = Topic::where([['webmaster_id', '=', $WebmasterSection->id], ['status',
-                        1], ['expire_date', '>=', date("Y-m-d")], ['expire_date', '<>', null]])->orWhere([['webmaster_id', '=', $WebmasterSection->id], ['status', 1], ['expire_date', null]]);
+                    $FoundTopic = Topic::where([['webmaster_id', '=', $WebmasterSection->id], [
+                        'status',
+                        1
+                    ], ['expire_date', '>=', date("Y-m-d")], ['expire_date', '<>', null]])->orWhere([['webmaster_id', '=', $WebmasterSection->id], ['status', 1], ['expire_date', null]]);
 
                     $topics_ids = TopicField::select("topic_id")->where("field_id", $field_id)->where("field_value", $FValue);
                     $FoundTopic = $FoundTopic->wherein("id", $topics_ids);
@@ -239,8 +458,10 @@ class HomeController extends Controller
                     });
                 } else {
                     $TopicsList = Topic::where(function ($query) use ($WebmasterSection) {
-                        $query->where([['webmaster_id', '=', $WebmasterSection->id], ['status',
-                            1], ['expire_date', '>=', date("Y-m-d")], ['expire_date', '<>', null]])->orWhere([['webmaster_id', '=', $WebmasterSection->id], ['status', 1], ['expire_date', null]]);
+                        $query->where([['webmaster_id', '=', $WebmasterSection->id], [
+                            'status',
+                            1
+                        ], ['expire_date', '>=', date("Y-m-d")], ['expire_date', '<>', null]])->orWhere([['webmaster_id', '=', $WebmasterSection->id], ['status', 1], ['expire_date', null]]);
                     });
                 }
 
@@ -375,7 +596,6 @@ class HomeController extends Controller
                 }
             }
 
-           
             return view('frontEnd.' . $view, [
                 "PageTitle" => @$meta_tags["title"],
                 "PageDescription" => @$meta_tags["desc"],
@@ -398,6 +618,7 @@ class HomeController extends Controller
 
     public function post_page($lang, $Topic = [], $private_topic_view = 0)
     {
+
         if (!empty($Topic)) {
             $WebmasterSection = $Topic->webmasterSection;
             if (!empty($WebmasterSection)) {
@@ -434,8 +655,10 @@ class HomeController extends Controller
                 }
 
                 // most viewed topics list
-                $MostViewedTopics = Topic::where([['webmaster_id', '=', $WebmasterSection->id], ['status',
-                    1], ['expire_date', '>=', date("Y-m-d")], ['expire_date', '<>', null]])->orWhere([['webmaster_id', '=', $WebmasterSection->id], ['status', 1], ['expire_date', null]]);
+                $MostViewedTopics = Topic::where([['webmaster_id', '=', $WebmasterSection->id], [
+                    'status',
+                    1
+                ], ['expire_date', '>=', date("Y-m-d")], ['expire_date', '<>', null]])->orWhere([['webmaster_id', '=', $WebmasterSection->id], ['status', 1], ['expire_date', null]]);
 
                 // filter by category
                 if (!empty($Category)) {
@@ -621,7 +844,6 @@ class HomeController extends Controller
                         ]
                     ));
                 } catch (\Exception $e) {
-
                 }
             }
 
@@ -716,7 +938,6 @@ class HomeController extends Controller
                             ]
                         ));
                     } catch (\Exception $e) {
-
                     }
                 }
 
@@ -784,7 +1005,6 @@ class HomeController extends Controller
                             ]
                         ));
                     } catch (\Exception $e) {
-
                     }
                 }
 
@@ -813,7 +1033,7 @@ class HomeController extends Controller
         if (!empty($WebmasterSection)) {
             $CustomFields = $WebmasterSection->customFields;
             if (count($CustomFields) > 0) {
-                foreach ($CustomFields->whereNotIn("type",[99])->where("required", 1) as $customField) {
+                foreach ($CustomFields->whereNotIn("type", [99])->where("required", 1) as $customField) {
                     // check permission
                     $add_permission_groups = [];
                     if ($customField->add_permission_groups != "") {
@@ -842,8 +1062,10 @@ class HomeController extends Controller
             $formFileName = "photo_file";
             $fileFinalName = "";
             if ($request->$formFileName != "") {
-                $fileFinalName = time() . rand(1111,
-                        9999) . '.' . $request->file($formFileName)->getClientOriginalExtension();
+                $fileFinalName = time() . rand(
+                    1111,
+                    9999
+                ) . '.' . $request->file($formFileName)->getClientOriginalExtension();
                 $request->file($formFileName)->move($uploadPath, $fileFinalName);
             }
 
@@ -851,8 +1073,10 @@ class HomeController extends Controller
             $formFileName = "attach_file";
             $attachFileFinalName = "";
             if ($request->$formFileName != "") {
-                $attachFileFinalName = time() . rand(1111,
-                        9999) . '.' . $request->file($formFileName)->getClientOriginalExtension();
+                $attachFileFinalName = time() . rand(
+                    1111,
+                    9999
+                ) . '.' . $request->file($formFileName)->getClientOriginalExtension();
                 $request->file($formFileName)->move($uploadPath, $attachFileFinalName);
             }
 
@@ -873,7 +1097,6 @@ class HomeController extends Controller
                     $Topic->{"seo_title_" . $ActiveLanguage->code} = strip_tags($request->title);
                     $Topic->{"seo_description_" . $ActiveLanguage->code} = mb_substr(strip_tags(stripslashes($request->details)), 0, 165, 'UTF-8');
                     $Topic->{"seo_url_slug_" . $ActiveLanguage->code} = Helper::URLSlug(strip_tags($request->title), "topic", 0);
-
                 }
             }
             $Topic->date = Helper::dateForDB($request->date);
@@ -913,8 +1136,10 @@ class HomeController extends Controller
                         if ($customField->type == 8 || $customField->type == 9 || $customField->type == 10) {
                             // upload file
                             if ($request->$field_value_var != "") {
-                                $uploadedFileFinalName = time() . rand(1111,
-                                        9999) . '.' . $request->file($field_value_var)->getClientOriginalExtension();
+                                $uploadedFileFinalName = time() . rand(
+                                    1111,
+                                    9999
+                                ) . '.' . $request->file($field_value_var)->getClientOriginalExtension();
                                 $request->file($field_value_var)->move($uploadPath, $uploadedFileFinalName);
                                 $field_value = $uploadedFileFinalName;
                             }
@@ -947,7 +1172,6 @@ class HomeController extends Controller
                         if ($customField->type == 3) {
                             Helper::news_letter_subscribe($field_value, @explode("@", $field_value)[0], @explode("@", $field_value)[1]);
                         }
-
                     }
                 }
             }
@@ -1070,7 +1294,6 @@ class HomeController extends Controller
                     }
                 }
             } catch (\Exception $e) {
-
             }
 
             $message_details = "<h3>" . $tpc_title . "</h3>" . $FromTopicTitle . $fields_details . "<hr><a href='" . route("topicsEdit", [@$WebmasterSection->id, @$Topic->id]) . "'>View All Details</a>";
@@ -1084,7 +1307,6 @@ class HomeController extends Controller
                 ]
             ));
         } catch (\Exception $e) {
-
         }
     }
 
@@ -1189,5 +1411,4 @@ class HomeController extends Controller
         }
         return $TopicsCountPerCat;
     }
-
 }

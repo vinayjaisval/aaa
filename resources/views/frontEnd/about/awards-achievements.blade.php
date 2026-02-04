@@ -1,23 +1,6 @@
+@extends('frontEnd.layouts.master')
+@section('content')
 
-	<body id="bg">
-
-    <?php include 'header.php'; ?>
-
-		<!-- Boxed Layout -->
-		<div id="page" class="site boxed-layout"> 
-		
-		<!-- Preloader -->
-		<div class="preeloader">
-			<div class="preloader-spinner"></div>
-		</div>
-		<!--/ End Preloader -->
-	
-	
-
-<!-- Title Tag  -->
-<title>Awards & Achievements</title>
-
-<!-- Breadcrumb -->
 <div class="breadcrumbs overlay" style="background-image:url('img/1600x500.jpg'); background-color:#2E2751;background-size: cover;">
     <div class="container mt-5">
         <div class="row">
@@ -31,15 +14,15 @@
                         </ul>
                     </div>
                     <!-- Bread Title -->
-                    <div class="bread-title"><h2>Awards & Achievements</h2></div>
+                    <div class="bread-title">
+                        <h2>Awards & Achievements</h2>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--/ End Breadcrumb -->
 
-<!-- Award section start here  -->
 <section class="team section-bg section-space" id="team" style="background:#fff;">
     <div class="container" data-aos="fade-up">
         <div class="row">
@@ -57,11 +40,11 @@
             </div>
         </div>
         <div class="row">
-            
+
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/ECT.png" alt="">
+                        <img src="{{asset('public/front/img/awards/ECT.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -71,11 +54,11 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/2022.png" alt="">
+                        <img src="{{asset('public/front/img/awards/2022.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -85,12 +68,12 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/1.png" alt="">
+                        <img src="{{asset('public/front/img/awards/1.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -103,7 +86,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/SS.png" alt="">
+                        <img src="{{asset('public/front/img/awards/SS.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -116,7 +99,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/6.png" alt="">
+                        <img src="{{asset('public/front/img/awards/6.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -129,7 +112,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/15.png" alt="">
+                        <img src="{{asset('public/front/img/awards/15.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -139,11 +122,11 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/RC3.png" alt="">
+                        <img src="{{asset('public/front/img/awards/RC3.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -153,16 +136,16 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/2.png" alt="">
+                        <img src="{{asset('public/front/img/awards/2.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
                             <h2>2020</h2>
-                            <p>Forbes India covers AAA Technologies as a premier and reputed independent auditing and consulting company</p> 
+                            <p>Forbes India covers AAA Technologies as a premier and reputed independent auditing and consulting company</p>
                         </div>
                     </div>
                 </div>
@@ -170,12 +153,12 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/1.png" alt="">
+                        <img src="{{asset('public/front/img/awards/1.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
                             <h2>2020</h2>
-                            <p>Company of the year 2020 and recognition for excellence in IS Audit And Cyber Security</p>  
+                            <p>Company of the year 2020 and recognition for excellence in IS Audit And Cyber Security</p>
                         </div>
                     </div>
                 </div>
@@ -183,12 +166,12 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/1.png" alt="">
+                        <img src="{{asset('public/front/img/awards/1.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
                             <h2>2019</h2>
-                            <p>Company of the year 2019 and recognition for excellence in IS Audit And Cyber Security</p>      
+                            <p>Company of the year 2019 and recognition for excellence in IS Audit And Cyber Security</p>
                         </div>
                     </div>
                 </div>
@@ -196,7 +179,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/11.png" alt="">
+                        <img src="{{asset('public/front/img/awards/11.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -209,7 +192,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/1.png" alt="">
+                        <img src="{{asset('public/front/img/awards/1.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -222,7 +205,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/8.png" alt="">
+                        <img src="{{asset('public/front/img/awards/8.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -235,7 +218,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/9.png" alt="">
+                        <img src="{{asset('public/front/img/awards/9.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -248,7 +231,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/13.png" alt="">
+                        <img src="{{asset('public/front/img/awards/13.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -261,7 +244,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/5.png" alt="">
+                        <img src="{{asset('public/front/img/awards/5.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -274,7 +257,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/1.png" alt="">
+                        <img src="{{asset('public/front/img/awards/1.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -287,7 +270,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/3.png" alt="">
+                        <img src="{{asset('public/front/img/awards/6.png')}}" alt=""> <img src="img/awards/3.png" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -300,7 +283,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/16.png" alt="">
+                        <img src="{{asset('public/front/img/awards/16.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -313,7 +296,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/10.png" alt="">
+                        <img src="{{asset('public/front/img/awards/10.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -326,7 +309,7 @@
             <div class="column">
                 <div class="effect">
                     <div class="effect-img">
-                        <img src="img/awards/7.png" alt="">
+                        <img src="{{asset('public/front/img/awards/7.png')}}" alt="">
                     </div>
                     <div class="effect-text">
                         <div class="inner">
@@ -336,16 +319,9 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </section>
 
-<!-- footer start -->
-    <?php include 'footer.php'; ?>
-	<!-- footer-end -->
-
-
-
-
-
+@endsection

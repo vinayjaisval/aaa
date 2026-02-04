@@ -1,20 +1,7 @@
+@extends('frontEnd.layouts.master')
 
-	<body id="bg">
-	     <?php include 'header.php'; ?>
-		<!-- Boxed Layout -->
-		<div id="page" class="site boxed-layout"> 
-		
-		<!-- Preloader -->
-		<div class="preeloader">
-			<div class="preloader-spinner"></div>
-		</div>
-		<!--/ End Preloader -->
-	
-		
+@section('content')
 
-
-<!-- Title Tag  -->
-<title>Our Management</title>
 
 <!-- Breadcrumb -->
 <div class="breadcrumbs overlay" style="background-image:url('img/1600x500.jpg'); background-color:#2e2751;background-size: cover;">
@@ -249,11 +236,4 @@
         </div>
     </div>
 </section>
-<!-- footer start -->
-    <?php include 'footer.php'; ?>
-	<!-- footer-end -->
-
-
-
-
-
+@endsection
