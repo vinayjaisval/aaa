@@ -1,100 +1,5 @@
-
-	<body id="bg">
-
-    <?php include 'header.php'; ?>
-
-		<!-- Boxed Layout -->
-		<div id="page" class="site boxed-layout"> 
-		
-		<!-- Preloader -->
-		<div class="preeloader">
-			<div class="preloader-spinner"></div>
-		</div>
-		<!--/ End Preloader -->
-	
-		<!-- Header -->
-		<header class="header">
-			<!-- Middle Header -->
-			<div class="middle-header">
-				<div class="container" >
-					<div class="row" >
-						<div class="col-12">
-							<div class="middle-inner">
-								<div class="row" >
-									<div class="col-lg-2 col-md-3 col-12">
-										<!-- Logo -->
-										<div class="logo">
-											<!-- Image Logo -->
-											<div class="img-logo">
-												<a href="index-2.html" rel="noreferrer">
-													<img src="img/AAA-Logo1.png" alt="#">
-												</a>
-											</div>
-										</div>								
-										<div class="mobile-nav"></div>
-									</div>
-									<div class="col-lg-10 col-md-9 col-12" style="float:right;">
-										<div class="menu-area"style="float:right;">
-											<!-- Main Menu -->
-											<nav class="navbar navbar-expand-lg">
-												<div class="navbar-collapse">	
-													<div class="nav-inner">	
-														<div class="menu-home-menu-container">
-															<!-- Naviagiton -->
-															<ul id="nav" class="nav main-menu menu navbar-nav">
-																<!-- <li><a rel="noreferrer" href="index.html">Home</a></li> -->
-																<li class="icon-active"><a rel="noreferrer">About Us</a>
-																	<ul class="sub-menu">
-																		<li><a href="overview.html" rel="noreferrer">Overview</a></li>
-																		<li><a href="vision%26mission.html" rel="noreferrer">Vision & Mission</a></li>
-																		<li><a href="milestone.html" rel="noreferrer">Our Milestone</a></li>
-																		<li><a href="awards.html" rel="noreferrer">Awards & Achievements</a></li>
-																		<li><a href="our-management.html"rel="noreferrer">Our Management</a></li>
-																		<!--<li><a href="./gallery&events.php" rel="noreferrer">Gallery & Events</a></li>-->
-																		<li><a href="main_cat_gallery.html" rel="noreferrer">Gallery & Events</a></li>
-																		
-																	</ul>
-																</li>
-																<li class="icon-active"><a rel="noreferrer">Our Services</a>
-																	<ul class="sub-menu">
-																		<li><a href="IT-System-Audit.html" rel="noreferrer">IT Systems Audit</a></li>
-																		<li><a href="cyber-security-audit.html" rel="noreferrer">Cyber Security</a></li>
-																		<li><a href="IT-Assurance-compliance.html" rel="noreferrer">IT Assurance & Compliance</a></li>
-																		<li><a href="IT-Security-Audit.html" rel="noreferrer">IT Security Audit</a></li>
-																		<li><a href="IT-Governance.html" rel="noreferrer">IT Governance</a></li>
-																	</ul>
-																</li>
-																<li class="icon-active"><a rel="noreferrer">Investor</a>
-																	<ul class="sub-menu">
-																		<li><a href="main_investor.html" rel="noreferrer">Investor Relations</a></li>
-																		<li><a href="Board-of-Directors.html" rel="noreferrer">Board of Directors</a></li>
-																		<li><a href="committes-of-the-board.html" rel="noreferrer">Committes of the Board</a></li>
-																		<li><a href="Investor-Grievances.html" rel="noreferrer">Investor Grievances</a></li>
-																	</ul>
-																</li>
-																<li><a href="careers.html" rel="noreferrer">Careers</a></li>
-																<li><a href="contact.html" rel="noreferrer">Contact Us</a></li>
-															</ul>
-															<!--/ End Naviagiton -->
-														</div>
-													</div>
-												</div>
-											</nav>
-											<!--/ End Main Menu -->	
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/ End Middle Header -->
-		</header>
-		<!--/ End Header -->
-
-<!-- Title Tag  -->
-<title>Board Of Directors</title>
+@extends('frontEnd.layouts.master')
+@section('content')
 
 <!-- Breadcrumb -->
 <div class="breadcrumbs overlay" style="background-image:url('img/overview-1.jpg'); background-size: cover;">
@@ -274,9 +179,7 @@
         
     </div>    
 </section>
-<!-- footer start -->
-    <?php include 'footer.php'; ?>
-	<!-- footer-end -->
+@endsection
 
 
 

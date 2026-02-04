@@ -1,17 +1,5 @@
-
- 
-	<body id="bg">
-             <?php include 'header.php'; ?>
-		<!-- Boxed Layout -->
-		<div id="page" class="site boxed-layout"> </div>
-		<!-- Preloader -->
-		<div class="preeloader">
-			<div class="preloader-spinner"></div>
-		</div>
-		<!--/ End Preloader -->
-
-<!-- Title Tag  -->
-<title>Committees of the Board</title>
+@extends('frontEnd.layouts.master')
+@section('content')
 
 <!-- Breadcrumb -->
 <div class="breadcrumbs overlay" style="background-image:url('img/overview-1.jpg'); background-size: cover;">
@@ -238,6 +226,4 @@
         
     </div>    
 </section>
-<!-- footer start -->
-    <?php include 'footer.php'; ?>
-	<!-- footer-end -->
+@endsection

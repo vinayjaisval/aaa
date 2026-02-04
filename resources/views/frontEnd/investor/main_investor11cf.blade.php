@@ -1,19 +1,5 @@
-
-	<body id="bg">
-	     <?php include 'header.php'; ?>
-		<!-- Boxed Layout -->
-		<div id="page" class="site boxed-layout"> 
-		
-		<!-- Preloader -->
-		<div class="preeloader">
-			<div class="preloader-spinner"></div>
-		</div>
-		<!--/ End Preloader -->
-	
-	
-
-<!-- Title Tag  -->
-<title>Investors Relations</title>
+@extends('frontEnd.layouts.master')
+@section('content')
 
 
 <!-- Breadcrumb -->
@@ -149,14 +135,29 @@
               <div class=policies-head text-center margon-top-20"></div>
               <div class="policies-head text-center margon-top-20">
 
-                                      <h2 style="color: #2e2751;">Chairman's Communication</h2><br><br>
+                                      <h2 style="color: #2e2751;">Shareholding Pattern</h2><br><br>
                     </div>
                     <div class="row project-gird">
             
                                     
                       <br> <br> <br>
                       <div class="col-lg-3 col-md-6">
-                        <a href="demo_investord8f6.html?sub_cat_id=NjY=">
+                        <a href="demo_investor751a.html?sub_cat_id=NjI=">
+                          <div class="folder" >
+                            <h1 class="text-center" style="font-size:90px; "><i style="border-color:orangered;"class="fa fa-folder-o"></i></h1>
+                            <h6 class="text-center">FY2025</h6>
+                          </div>
+                        </a>
+                          
+                        
+                       
+                        
+                      </div>
+                    
+                                          
+                      <br> <br> <br>
+                      <div class="col-lg-3 col-md-6">
+                        <a href="demo_investor3ebf.html?sub_cat_id=NTc=">
                           <div class="folder" >
                             <h1 class="text-center" style="font-size:90px; "><i style="border-color:orangered;"class="fa fa-folder-o"></i></h1>
                             <h6 class="text-center">FY2024</h6>
@@ -171,7 +172,7 @@
                                           
                       <br> <br> <br>
                       <div class="col-lg-3 col-md-6">
-                        <a href="demo_investor4419.html?sub_cat_id=NjU=">
+                        <a href="demo_investor6319.html?sub_cat_id=NDM=">
                           <div class="folder" >
                             <h1 class="text-center" style="font-size:90px; "><i style="border-color:orangered;"class="fa fa-folder-o"></i></h1>
                             <h6 class="text-center">FY2023</h6>
@@ -186,7 +187,7 @@
                                           
                       <br> <br> <br>
                       <div class="col-lg-3 col-md-6">
-                        <a href="demo_investor1d4b.html?sub_cat_id=NDY=">
+                        <a href="demo_investorbd3e.html?sub_cat_id=NDI=">
                           <div class="folder" >
                             <h1 class="text-center" style="font-size:90px; "><i style="border-color:orangered;"class="fa fa-folder-o"></i></h1>
                             <h6 class="text-center">FY2022</h6>
@@ -201,7 +202,7 @@
                                           
                       <br> <br> <br>
                       <div class="col-lg-3 col-md-6">
-                        <a href="demo_investor1d05.html?sub_cat_id=NDU=">
+                        <a href="demo_investor782f.html?sub_cat_id=Nw==">
                           <div class="folder" >
                             <h1 class="text-center" style="font-size:90px; "><i style="border-color:orangered;"class="fa fa-folder-o"></i></h1>
                             <h6 class="text-center">FY2021</h6>
@@ -224,6 +225,4 @@
       </div>
     </div>
   </section>
-<!-- footer start -->
-    <?php include 'footer.php'; ?>
-	<!-- footer-end -->
+@endsection
