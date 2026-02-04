@@ -1,0 +1,91 @@
+.heading {
+    text-align: center;
+    color: #2e2751;
+    font-size: 30px;
+    font-weight: 700;
+    position: relative;
+    margin-bottom: 70px;
+    text-transform: uppercase;
+    z-index: 999;
+  }
+.testimonial_wrap .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    
+}
+.testi_inner{
+    position: relative;
+    padding: 1.6rem 6rem;
+    text-align: center;
+    cursor: grab;
+}
+.thumb{
+    margin-bottom: 24px;
+    display: inline-block;
+}
+.thumb img{
+    max-width: 120px;
+    display: block;
+    border-radius: 50%;
+}
+.excert p{
+    font-size: 14px;
+    line-height: 26px;
+    /* font-weight: 400; */
+    color: #000;
+}
+.testi_info p{
+    font-size: 14px;
+    color: #000;
+}
+.testi_info h4{
+    font-size: 17px;
+}
+.slider .slick-dots li button:before{
+    font-size: 16px;
+    color: #e2e0dd;
+    opacity: 1;
+}
+.slider .slick-dots li.slick-active button:before{
+    color: #2e2751;
+    opacity: 1;
+}
+.slider .slick-dots li {
+    margin: 0 3px;
+}
+.slider .slick-prev:before {
+    font-size: 40px;
+    color: #000;
+    /* margin-left: 15px; */
+}
+.slider .slick-next:before {
+    font-size: 40px;
+    color: #000;
+    /* margin-right: 15px; */
+}
+
+
+@media only screen and (max-width:767px){
+    .testi_inner{
+        padding: 15px 20px;
+    }
+    .testi_inner::before{
+        font-size: 14px;
+    }
+    .excert p{
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .testi_info p{
+        font-size: 14px;
+    }
+    .testi_info h4{
+        font-size: 15px;
+    }
+    /* .slider .slick-prev:before{
+    } */
+    /* .slider .slick-next:before{
+        
+    } */
+
+}

@@ -1,0 +1,2 @@
+
+@include('frontEnd.layouts.menu')
